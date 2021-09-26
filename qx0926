@@ -1,0 +1,145 @@
+[general]
+server_check_url=http://bing.com/
+dns_exclusion_list=*.cmbchina.com, *.cmpassport.com, *.jegotrip.com.cn, *.icitymobile.mobi, id6.me, *.icitymobile.mobi, *.pingan.com.cn, *.localnetwork.uop, mfs.ykimg.com*.ttf
+excluded_routes=10.0.0.0/8, 127.0.0.0/8, 169.254.0.0/16, 192.0.2.0/24, 192.168.0.0/16, 198.51.100.0/24, 224.0.0.0/4
+geo_location_checker=http://ip-api.com/json/?lang=zh-CN, https://raw.githubusercontent.com/Orz-3/QuantumultX/master/IP.js
+resource_parser_url=https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js
+profile_img_url=https://raw.githubusercontent.com/Orz-3/mini/none/qikuo.png
+
+[dns]
+server=119.29.29.29
+address=/mtalk.google.com/108.177.125.188
+server=/*.taobao.com/223.5.5.5
+server=/*.tmall.com/223.5.5.5
+server=/*.alipay.com/223.5.5.5
+server=/*.alicdn.com/223.5.5.5
+server=/*.aliyun.com/223.5.5.5
+server=/*.jd.com/119.28.28.28
+server=/*.qq.com/119.28.28.28
+server=/*.tencent.com/119.28.28.28
+server=/*.weixin.com/119.28.28.28
+server=/*.bilibili.com/119.29.29.29
+server=/hdslb.com/119.29.29.29
+server=/*.163.com/119.29.29.29
+server=/*.126.com/119.29.29.29
+server=/*.126.net/119.29.29.29
+server=/*.127.net/119.29.29.29
+server=/*.netease.com/119.29.29.29
+server=/*.mi.com/119.29.29.29
+server=/*.xiaomi.com/119.29.29.29
+
+[policy]
+static=Google, IEPL, IPLC, USA, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+static=Telegram, IEPL, IPLC, Hong Kong, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+static=Twitter, IEPL, IPLC, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
+static=Facebook, IEPL, IPLC, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png
+static=Instagram, IEPL, IPLC, TaiWan, SinGaPore, Hong Kong, Korea, Japan, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Instagram.png
+static=Clubhouse, IEPL, IPLC, img-url=https://raw.githubusercontent.com/tengyuankoo/qx/main/Clubhouse.png
+static=YouTube, IEPL, IPLC, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Youtube.png
+static=Netflix, IEPL, IPLC, SinGaPore, Hong Kong, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix_Letter.png
+static=hulu, SinGaPore, TaiWan, Hong Kong, Korea, Japan, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Hulu.png
+static=TikTok, USA, Hong Kong, TaiWan, Korea, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Tiktok.png
+static=Twitch, TaiWan, Hong Kong, SinGaPore, Korea, IPLC, IEPL, img-url=https://raw.githubusercontent.com/shoujiqiyuan/DigimonforQuanX/master/IconSet/0102.png
+static=Spotify, Hong Kong, Japan, TaiWan, SinGaPore, Korea, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Spotify.png
+static=Pornhub, IEPL, IPLC, Hong Kong, Japan, TaiWan, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Pornhub.png
+static=GitHub, Hong Kong, TaiWan, SinGaPore, Korea, img-url=https://raw.githubusercontent.com/shoujiqiyuan/PokemonGOforQuanX/master/IconSet/X003.png
+static=Steam, Hong Kong, USA, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/steam.png
+static=PayPal, Hong Kong, TaiWan, USA, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Paypal.png
+url-latency-benchmark=IEPL, server-tag-regex=IEPL, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/IEPL.png
+url-latency-benchmark=IPLC, server-tag-regex=IPLC, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/IPLC.png
+url-latency-benchmark=SinGaPore, server-tag-regex=新加坡, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/SG.png
+url-latency-benchmark=TaiWan, server-tag-regex=台湾|TW, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/TW.png
+url-latency-benchmark=Hong Kong, server-tag-regex=香港|HK, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/HK.png
+url-latency-benchmark=Korea, server-tag-regex=韩国|🇰🇷, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Aoyt520/jiumeiquanX/master/quanX/Korea.png
+url-latency-benchmark=USA, server-tag-regex=美国|US|西雅图, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Aoyt520/jiumeiquanX/master/quanX/USAX.png
+url-latency-benchmark=Japan, server-tag-regex=日本|JP, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Aoyt520/jiumeiquanX/master/quanX/Japan.png
+static=苹果服务, direct, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png
+
+[server_remote]
+
+
+[filter_remote]
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GitHub/GitHub.list, tag=GitHub, force-policy=GitHub, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Twitch/Twitch.list, tag=Twitch, force-policy=Twitch, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/Video/Pornhub.list, tag=Pornhub, force-policy=Pornhub, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Hulu/Hulu.list, tag=Hulu, force-policy=hulu, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/JOOX/JOOX.list, tag=JOOX, force-policy=proxy, update-interval=86400, opt-parser=false, enabled=false
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/EA/EA.list, tag=EA, force-policy=proxy, update-interval=86400, opt-parser=false, enabled=false
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Game/Game.list, tag=Game, force-policy=proxy, update-interval=86400, opt-parser=false, enabled=false
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Steam/Steam.list, tag=Steam, force-policy=Steam, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/SteamCN/SteamCN.list, tag=SteamCN, force-policy=Steam, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/GeQ1an/Rules/master/QuantumultX/Filter/Optional/Microsoft.list, tag=Microsoft, force-policy=proxy, update-interval=86400, opt-parser=false, enabled=false
+https://raw.githubusercontent.com/GeQ1an/Rules/master/QuantumultX/Filter/Optional/PayPal.list, tag=PayPal, force-policy=PayPal, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/NobyDa/ND-AD/master/QuantumultX/AD_Block_Plus.txt, tag=AD_Block_Plus, force-policy=reject, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/NobyDa/ND-AD/master/QuantumultX/AD_Block.txt, tag=AD_Block, force-policy=reject, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Unbreak.list, tag=规则修正, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Advertising.list, tag=广告拦截, force-policy=reject, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Hijacking.list, tag=运营劫持, force-policy=reject, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Apple/BlockiOSUpdate.list, tag=屏蔽更新, force-policy=reject, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Privacy.list, tag=隐私保护, force-policy=reject, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GoogleDrive/GoogleDrive.list, tag=Google Drive, force-policy=Google, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Google/GoogleSearch.list, tag=Google, force-policy=Google, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Clubhouse/Clubhouse.list, tag=ClubhouseIP, force-policy=Clubhouse, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Facebook/Facebook.list, tag=Facebook, force-policy=Facebook, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/YouTubeMusic/YouTubeMusic.list, tag=YouTubeMusic, force-policy=YouTube, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/Video/YouTube.list, tag=YouTube, force-policy=YouTube, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Netflix/Netflix.list, tag=Netflix, force-policy=Netflix, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/Music/Spotify.list, tag=Spotify, force-policy=Spotify, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Instagram/Instagram.list, tag=Instagram, force-policy=Instagram, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Twitter.list, tag=Twitter, force-policy=Twitter, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Telegram/Telegram.list, tag=Telegram, force-policy=Telegram, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Apple/iCloud.list, tag=苹果服务, force-policy=苹果服务, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Apple/AppStore.list, tag=苹果服务, force-policy=苹果服务, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Apple/AppStoreConnect.list, tag=苹果服务, force-policy=苹果服务, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/China.list, tag=国内网站, force-policy=direct, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/ChinaIP.list, tag=ChinaIP, update-interval=86400, enabled=true
+
+[rewrite_remote]
+https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/Wechat.js, tag=微信公众号去广告, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, tag=VSCO高级会员, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js.conf, tag=NobyDa, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js_Remote_Cookie.conf, tag=NobyDa Cokie, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/Orz-3/QuantumultX/master/TikTok.conf, tag=tiktok, update-interval=172800, opt-parser=true, enabled=false
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/external/QuantumultX/TikTokUnlock/TikTokTW.conf, tag=Tiktok台湾, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/Tartarus2014/QuantumultX-Script/main/Unlock/TiktokJP.conf, tag=tiktok, update-interval=172800, opt-parser=true, enabled=false
+https://raw.githubusercontent.com/Semporia/TikTok-Unlock/master/Quantumult%20X/TikTok-JP.conf, tag=tiktok, update-interval=172800, opt-parser=true, enabled=false
+https://raw.githubusercontent.com/Semporia/TikTok-Unlock/master/Quantumult%20X/TikTok-US.conf, tag=tiktok, update-interval=172800, opt-parser=true, enabled=false
+https://raw.githubusercontent.com/Tartarus2014/QuantumultX-Script/main/Unlock/TiktokUK.conf, tag=tiktokuk, update-interval=172800, opt-parser=true, enabled=false
+https://raw.githubusercontent.com/Orz-3/QuantumultX/master/YouTube.conf, tag=YouTube 去广告, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/o7y0/Rules/1/QuantumultX/Rewrite/Script.conf, tag=Script, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/TestFlightDownload.conf, tag=用于更新TestFlight, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/Orz-3/QuantumultX/master/JS_GetCookie.conf, tag=Cookie, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/QuantumultX/GetCookieTP/GetCookieTP.conf, tag=GetCookieTP, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/QuantumultX/GetCookie/GetCookie.conf, tag=GetCookie, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Rewrite_lhie1.conf, tag=lhie1去广告, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Rewrite/Block/Advertising.conf, tag=神机去广告, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Rewrite/General.conf, tag=神机重定向, update-interval=86400, opt-parser=false, enabled=true
+https://subweb.oss-cn-hongkong.aliyuncs.com/Module/embyUnlocked.conf, tag=EMBY解锁, update-interval=86400, opt-parser=false, enabled=true
+https://gitee.com/chavyleung/scripts/raw/master/box/rewrite/boxjs.rewrite.quanx.tf.conf, tag=BoxJS, update-interval=86400, opt-parser=false, enabled=true
+
+[server_local]
+
+[filter_local]
+host-suffix, local, direct
+ip-cidr, 192.168.0.0/16, direct
+ip-cidr, 10.0.0.0/8, direct
+ip-cidr, 172.16.0.0/12, direct
+ip-cidr, 127.0.0.0/8, direct
+ip-cidr, 100.64.0.0/10, direct
+ip-cidr, 224.0.0.0/4, direct
+ip6-cidr, fe80::/10, direct
+-geoip, cn, direct
+
+#绕过企业证书过期
+host, ocsp.apple.com, reject
+
+#迅雷版权问题
+host, hub5idx.v6.shub.sandai.net, reject
+host, hub5emu.v6.shub.sandai.net, reject
+host, hub5btmain.v6.shub.sandai.net, reject
+Final,IPLC
+
+[rewrite_local]
+
+
+[task_local]
