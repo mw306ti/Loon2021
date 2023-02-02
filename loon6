@@ -1,0 +1,164 @@
+[General]
+# 默认关闭 system DNS，使用 1 个 IP DNS 进行占位
+dns-server = 223.6.6.6
+allow-wifi-access = false # 默认关闭网络共享
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+ipv6 = false
+
+skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, e.crashlynatics.com
+bypass-tun = 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 192.168.0.0/16, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 255.255.255.255/32
+
+# DoH server，标准的 url 格式，以，分割多个地址
+doh-server = https://doh.pub/dns-query, https://dns.alidns.com/dns-query
+
+# DoQ server，以 quic://开头，以，分割多个地址，默认端口 784
+doq-server = quic://c.passcloud.xyz:784, quic://i.passcloud.xyz:784, quic://x.passcloud.xyz:784, quic://h.iqiq.io:784, quic://j.iqiq.io:784
+
+# 节点测速时的 url
+proxy-test-url = https://captive.apple.com
+
+# 节点测速时的超时秒数
+test-timeout = 3
+interface-mode = auto
+
+# 设置响应 ssid 环境下使用的策略，如"loon-wifi5g":DIRECT，表示在 loon-wifi5g 这个 wifi 网络下使用直连模式，"cellular":PROXY，表示在蜂窝网络下使用代理模式，"default":RULE，默认使用分流模式
+# ssid-trigger = ”HedyLamarr“:DIRECT, ”HedyLamarr_5G“:DIRECT
+
+# 以下配置的域名不会使用 fakeip 进行映射
+real-ip = *.apple.com, *apple.com
+
+[Proxy]
+# 内置 DIRECT、REJECT 策略
+# 内置 PROXY 指向本地节点或者订阅节点中的任何一个（有本地节点默认指向第一个本地节点，当没有本地节点但有订阅节点时，指向第一个订阅的第一个节点，本地节点和订阅节点都不存在时指向 DIRECT）
+
+[Remote Proxy]
+# 订阅节点
+# 别名 = 订阅 URL
+
+# 默认使用 Sub-Store 的组合订阅 subs
+Subs = https://sub.store/download/collection/subs, udp = false, fast-open = false, vmess-aead = true, enabled = true
+# 预留本地直接订阅入口，以便 Sub-Store 无法使用时，直接 App 内订阅节点来使用
+Local Sub = https://example/server-complete.txt, udp = false, fast-open = false, vmess-aead = true, enabled = true
+
+
+
+[Remote Filter]
+# 筛选节点，筛选后的结果可加入到策略组中，目前支持三种筛选方式
+# NodeSelect: 使用在 UI 上选择的节点。
+# Netflix = NodeSelect,Subs
+# NameKeyword: 根据提供的关键词对订阅中所有节点的名称进行筛选，使用筛选后的节点。
+# Hulu = NameKeyword,Subs,Subs2,FilterKey = Hulu
+# NameRegex: 根据提供的正则表达式对订阅中所有节点的名称进行筛选，使用筛选后的节点。
+# HK = NameRegex,Subs,FilterKey = *HK
+Hong Kong = NameRegex, Subs, Local Sub, FilterKey = "港|🇭🇰|HK|Hong Kong"
+America = NameRegex, Subs, Local Sub, FilterKey = "美|美国|🇺🇸|US|us"
+
+[Proxy Group]
+
+Outbound Policy = select, SSID Policy, DIRECT, Auto Select, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Server.png?raw=true
+
+Global Proxy = select, Outbound Policy, DIRECT, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Global.png?raw=true
+Global Direct = select, DIRECT, Outbound Policy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/China_Map.png?raw=true
+Final = select, DIRECT, Outbound Policy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Final.png?raw=true
+
+Apple = select, DIRECT, Outbound Policy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Apple.png?raw=true
+Microsoft = select, DIRECT, Outbound Policy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Microsoft.png?raw=true
+Duolingo = select, Hong Kong, Outbound Policy, DIRECT, img-url = https://github.com/QuentinHsu/Awesome-Apple/blob/main/Icon/duolingo.png?raw=true
+Speedtest = select, DIRECT, Outbound Policy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
+Google Voice = select, America, Outbound Policy, img-url = https://github.com/QuentinHsu/Awesome-Apple/blob/main/Icon/google-voice.png?raw=true
+
+
+AD Block = select, REJECT, DIRECT, Outbound Policy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Advertising.png?raw=true
+
+Server Policy = select, Auto Select, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Server.png?raw=true
+SSID Policy = ssid, default = Server Policy , cellular = Server Policy, "HedyLamarr"= DIRECT, "HedyLamarr_5G" = DIRECT, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/SSID.png?raw=true
+
+Auto Select = url-test, Subs, Local Sub, url = https://captive.apple.com, interval = 600, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Auto.png?raw=true
+
+[Rule]
+
+# 避免重新导入配置后，即便是有节点可用，依旧无法下载 GitHub 上的远程资源
+DOMAIN, github.com, Global Proxy
+DOMAIN, raw.githubusercontent.com, Global Proxy
+
+# 避免 Sub-Store 访问不了面板
+DOMAIN-SUFFIX,vercel.app,Global Proxy
+
+# 多邻国
+DOMAIN-KEYWORD, duolingo, Duolingo
+
+GEOIP,CN,DIRECT
+
+FINAL,Final
+
+[Remote Rule]
+
+# AD Block
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/AdvertisingLite/AdvertisingLite.list?raw=true, tag = blackmatrix7 AdvertisingLite, policy = AD Block, enabled = true
+
+# Apple
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/Apple/Apple.list?raw=true, tag = Apple, policy = Apple, enabled = true
+# Microsoft 规则
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/Microsoft/Microsoft.list?raw=true, tag = Microsoft, policy = Microsoft, enabled = true
+# Speedtest 规则
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/Speedtest/Speedtest.list?raw=true, tag = Speedtest, policy = Speedtest, enabled = true
+
+# Google Voice
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/GoogleVoice/GoogleVoice.list?raw=true, tag = Google Voice, policy = Google Voice, enabled = true
+# Google
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/Google/Google.list?raw=true, tag = Google, policy = Global Proxy, enabled = true
+# YouTube
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/YouTube/YouTube.list?raw=true,tag = YouTube, policy = Global Proxy, enabled = true
+# GitHub
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/GitHub/GitHub.list?raw=true, tag = GitHub, policy = Global Proxy, enabled = true
+
+# Telegram
+https://github.com/VirgilClyne/VirgilClyne/blob/main/modules/ASN/ASN.Telegram.list?raw=true, policy=Global Proxy, tag=Telegram IP-ASN, enabled=true
+# Twitter
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/Twitter/Twitter.list?raw=true, tag = Twitter, policy = Global Proxy, enabled = true
+## 全球代理总规则
+https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/ProxyGFWlist.list?raw=true, policy=Global Proxy, tag=Global Proxy, enabled=true
+
+# 直连
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Loon/Direct/Direct.list?raw=true, policy=Global Direct, tag=blackmatrix7 Direct, enabled=true
+https://github.com/VirgilClyne/VirgilClyne/blob/main/modules/ASN/ASN.China.list?raw=true, policy = Global Direct, tag = IP-ASN CN, enabled = true
+
+[Rewrite]
+# Redirect Google Search Service
+^https?:\/\/(www.)?(g|google)\.cn 302 https://www.google.com
+
+[Host]
+# 在拥有 DNS 服务的 Wi-Fi 下默认只使用 System DNS，也就是 Wi-Fi 网关的下发的 DNS 服务。以减少终端的请求负担，并能获得更低的 DNS 请求延迟
+ssid:HedyLamarr = server:system
+ssid:HedyLamarr_5G = server:system
+
+[Remote Script]
+
+# 京东薅羊毛
+https://github.com/Tartarus2014/Loon-Script/blob/master/JD.conf?raw=true, tag = 京东薅羊毛, enabled = true
+
+[Plugin]
+# 获取 Cookike
+https://github.com/NobyDa/Script/blob/master/Loon/Loon_GetCookie.plugin?raw=true, enabled = true
+# Sub Store
+https://github.com/sub-store-org/Sub-Store/blob/master/config/Loon.plugin?raw=true, enabled = true
+# iRingo Weather
+https://github.com/VirgilClyne/iRingo/blob/main/plugin/Weather.plugin?raw=true, enabled = true
+# 去广告
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rewrite/Loon/AdvertisingLite/AdvertisingLite.plugin?raw=true, enabled = true
+# 流媒体解锁检测
+https://github.com/Tartarus2014/Loon-Script/blob/master/Plugin/MediaCheck.plugin?raw=true, enabled = true
+# TestFlight 解锁
+https://github.com/NobyDa/Script/blob/master/Loon/Loon_TF_Download.plugin?raw=true, enabled = true
+# Bilibili
+https://github.com/app2smile/rules/blob/master/plugin/bilibili.plugin?raw=true, enabled = true
+# Boxjs
+https://github.com/chavyleung/scripts/blob/master/box/rewrite/boxjs.rewrite.loon.plugin?raw=true, enabled = true
+# 插件仓库
+https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Tool/Loon/Plugin/LoonGallery.plugin?raw=true, enabled = true
+
+[Mitm]
+ca-p12 =
+ca-passphrase =
+skip-server-cert-verify = false
