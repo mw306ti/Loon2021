@@ -1,0 +1,208 @@
+# general 模块内为一些通用的设置参数项
+[general]
+
+# Quantumult X 会对 server_check_url 指定的网址进行相应测试，以确认节点的可用性
+# 你同样可以在 server_local/remote 中，为节点、订阅单独指定 server_check_url 参数
+server_check_url = http://www.qualcomm.cn/generate_204
+# 节点延迟测试超时参数，需小于 5000 毫秒才生效
+server_check_timeout = 2000
+
+# 资源解析器，可用于自定义各类远程资源的转换，如节点，规则 filter，复写 rewrite 等，url 地址可远程，可本地/iCloud(Quantumult X/Scripts目录);
+# 具体内容直接参照链接里的使用说明
+resource_parser_url = https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/resource-parser.js?raw=true
+
+# geo_location_checker 用于节点页面的节点信息展示，可完整自定义展示内容与方式
+geo_location_checker = http://ip-api.com/json/?lang=zh-CN, https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/IP_API.js?raw=true
+
+# 运行模式模块，running_mode_trigger 设置，即根据网络自动切换 分流/直连/全局代理 等模式。
+# running-mode-trigger 模式下，跟手动切换直连/全局代理 等效，rewrite/task 模块始终会生效，比 ssid 策略组设置简单，比 ssid-suspend 更灵活。
+running_mode_trigger = filter, filter, HedyLamarr:all_direct, HedyLamarr_5G:all_direct, ssid_global_proxy:all_proxy
+# 上述写法，前两个 filter 先后表示 在 [数据蜂窝网络] 跟 [一般 Wi-Fi] 下，走 filter(分流) 模式，后面则表示在 HedyLamarr/HedyLamarr_5G 下切换为全局直连 [all_direct]，assid_global_proxy 下则是切换为全局代理 [all_proxy]
+# 如需使用，相应 SSID 换成你自己 Wi-Fi 名即可
+
+
+[dns]
+# 禁用系统 DNS（no-system）以及 ipv6
+# no-system
+no-ipv6
+# 支持参数 excluded_ssids , included_ssids(1.0.29+) 指定在特定 Wi-Fi SSID 下失效/生效
+## 当使用了 excluded_ssids 参数时，不得禁用系统 DNS 解析，因为会造成部分 DNS 解析异常
+
+# 腾讯 DoH，阿里 DoH
+doh-server = https://doh.pub/dns-query, https://dns.alidns.com/dns-query, excluded_ssids = HedyLamarr,HedyLamarr_5G
+
+[policy]
+# 以下为策略组 [policy] 部分
+# static 策略组中，你需要手动选择想要的节点/策略组
+# available 策略组将按顺序选择你列表中第一个可用的节点，类似于 Clash 中的 Fallback
+# round-robin 策略组，将按列表的顺序轮流使用其中的节点
+# url-latency-benchmark 延迟策略组，选取延迟最优节点
+# dest-hash 策略组，随机负载均衡，但相同域名走固定节点
+# ssid 策略组，将根据你所设定的网络来自动切换节点/策略组
+## img-url 参数用于指定策略组图标，可远程，也可本地/iCloud(Quantumult X/Images路径下) （108*108 大小）
+## direct/proxy/reject 则只能用本地图标，名字分别为 direct.png, proxy.png,reject.png 放置于 Images 文件夹下即可生效 (108*108 大小)
+
+static = Server Strategy, Auto Select, Fallback, Country, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Server.png?raw=true
+
+
+static = Global Proxy, Server Strategy, Direct, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Global.png?raw=true
+static = Global Direct, Direct, Server Strategy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/China_Map.png?raw=true
+static = Final, Direct, Server Strategy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Final.png?raw=true
+
+static = Apple, Direct, Server Strategy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Apple.png?raw=true
+static = Microsoft, Direct, Server Strategy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Microsoft.png?raw=true
+static = Speedtest, Direct, Server Strategy, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Speedtest.png?raw=true
+
+static = Google Voice, America, Direct, Server Strategy, img-url = https://github.com/QuentinHsu/Awesome-Apple/blob/main/Icon/google-voice.png?raw=true
+static = Duolingo, Hong Kong, Direct, Server Strategy, img-url = https://github.com/QuentinHsu/Awesome-Apple/blob/main/Icon/duolingo.png?raw=true
+
+static = AD Block, reject, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Advertising.png?raw=true
+static = Privacy Data, reject, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Lock.png?raw=true
+
+
+url-latency-benchmark = Auto Select, server-tag-regex = ^(?!.*游戏), check-interval = 600, tolerance = 0, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Auto.png?raw=true
+available = Fallback, server-tag-regex = ^(?!.*游戏), img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Bypass.png?raw=true
+static = Country, Hong Kong, Tai Wan, Japan, America, Other, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/World_Map.png?raw=true
+# 具体的国家分组
+static = Hong Kong, server-tag-regex = 港|香港|🇭🇰|HK|hk, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Hong_Kong.png?raw=true
+static = Tai Wan, server-tag-regex = 台|台灣|🇹🇼|TW|tw, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Taiwan.png?raw=true
+static = Japan, server-tag-regex = 日|日本|🇯🇵|JP|jp, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Japan.png?raw=true
+static = America, server-tag-regex = 美|美国|🇺🇸|US|us, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/United_States.png?raw=true
+static = Other, server-tag-regex = ^(?!.*(美|美国|🇺🇸|US|us|港|香港|🇭🇰|HK|hk|日|日本|东京|🇯🇵|JP|jp|台|台湾|TW|tw|新|新加坡|狮城|🇸🇬|SG|sg)).*, img-url = https://github.com/Koolson/Qure/blob/master/IconSet/Color/World_Map.png?raw=true
+
+
+[filter_remote]
+# 规则分流远程订阅
+# 远程分流模块，可使用 force-policy 来强制使用策略偏好，替换远程规则内所指定的策略组
+# 同样的
+# update-interval 为更新时间参数，单位 秒，默认更新时间为 24*60*60 = 86400 秒，也就是 24 小时
+# opt-parser = true/false 用于控制是否对本订阅 开启资源解析器，不写或者 false 表示不启用解析器
+
+### 隐私保护 ###
+https://github.com/DivineEngine/Profiles/blob/master/Quantumult/Filter/Guard/Privacy.list?raw=true, tag = Privacy Data, force-policy = Privacy Data, update-interval = 172800, opt-parser = false, enabled = true
+
+### 默认直连，但可能需要代理的规则集 ###
+# Apple 规则
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/Apple/Apple.list?raw=true, tag = Apple, force-policy = Apple, update-interval = 172800, opt-parser = false, enabled = true
+# Microsoft 规则
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/Microsoft/Microsoft.list?raw=true, tag = Microsoft, force-policy = Microsoft, update-interval = 172800, opt-parser = false, enabled = true
+# Speedtest 规则
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/Speedtest/Speedtest.list?raw=true, tag = Speedtest, force-policy = Speedtest, update-interval = 172800, opt-parser = false, enabled = true
+
+### 全球代理规则集 ###
+# Google Voice
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/GoogleVoice/GoogleVoice.list?raw=true, tag = Google Voice, force-policy = Google Voice, update-interval = 172800, opt-parser = false, enabled = true
+# Google
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/Google/Google.list?raw=true, tag = Google, force-policy = Global Proxy, update-interval = 172800, opt-parser = false, enabled = true
+# YouTube
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/YouTube/YouTube.list?raw=true, tag = YouTube, force-policy = Global Proxy, update-interval = 172800, opt-parser = false, enabled = true
+# GitHub
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/GitHub/GitHub.list?raw=true, tag = GitHub, force-policy = Global Proxy, update-interval = 172800, opt-parser = false, enabled = true
+# Telegram
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/Telegram/Telegram.list?raw=true, tag = Telegram, force-policy = Global Proxy, update-interval = 172800, opt-parser = false, enabled = true
+# Twitter
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/Twitter/Twitter.list?raw=true, tag = Twitter, force-policy = Global Proxy, update-interval = 172800, opt-parser = false, enabled = true
+## 全球代理总规则
+https://github.com/QuentinHsu/network-rules/blob/release/Quantumult-X/ACL4SSR-Proxy.list?raw=true, tag = Global Proxy, force-policy = Global Proxy, update-interval = 172800, opt-parser = false, enabled = true
+
+
+### 全球直连规则集 ###
+# 直连规则，直连，指不应该被去广告分流规则屏蔽的域名、IP 等，请将此分流规则置于去广告规则之前
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/QuantumultX/Direct/Direct.list?raw=true, tag = Global Direct, force-policy = Global Direct, update-interval = 172800, opt-parser = false, enabled = true
+# 去广告总规则，去广告，指应该被分流规则屏蔽的域名、IP 等，请将此分流规则置于直连规则之后
+https://github.com/DivineEngine/Profiles/blob/master/Quantumult/Filter/Guard/Advertising.list?raw=true, tag = AdvertisingLite, force-policy = AD Block, update-interval = 172800, opt-parser = false, enabled = true
+
+[filter_local]
+
+# 本地分流规则 (对于完全相同的某条规则，本地的将优先生效)
+
+# user-agent, ?abc*, proxy
+# host, www.google.com, proxy
+# host-keyword, adsite, reject
+# host-suffix, googleapis.com, proxy
+
+host-suffix, officecdn-microsoft-com.akamaized.net, Global Proxy
+host-suffix, software.charliemonroe.net, Global Proxy
+host-keyword, duolingo, Duolingo
+
+
+ip-cidr, 10.0.0.0/8, direct
+ip-cidr, 127.0.0.0/8, direct
+ip-cidr, 172.16.0.0/12, direct
+ip-cidr, 192.168.0.0/16, direct
+# 若是远程分流规则里使用了国内 ip 列表，那么就没必要使用 geoip 分流规则
+geoip, cn, direct
+final, Final
+
+
+[rewrite_remote]
+# 远程重写订阅
+# 包含主机名 hostname 以及复写 rewrite 规则
+# update-interval 为更新时间参数，单位：秒，默认更新时间为：24 * 60 * 60 = 84600 秒，也就是 24 小时
+# opt-parser = true/false 用于控制是否对订阅开启资源解析器，不写或者 false 表示不启用解析器
+
+# default rewrite
+https://github.com/DivineEngine/Profiles/blob/master/Quantumult/Rewrite/General.conf?raw=true, tag=神机重定向, update-interval=172800, opt-parser=false, enabled=false
+# 去广告
+https://github.com/QuentinHsu/Apple-Rules-Script/blob/main/rewrite/ad/original/ads.qxrewrite?raw=true, tag = Original AD Block, update-interval = 172800, opt-parser = false, enabled = true
+https://github.com/QuentinHsu/Apple-Rules-Script/blob/main/rewrite/ad/splash-screen-ads/ads.qxrewrite?raw=true, tag = Splash Screen AD, update-interval = 172800, opt-parser = true, enabled = true
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rewrite/QuantumultX/AdvertisingLite/AdvertisingLite.conf?raw=true, tag = Advertising Lite, update-interval = 172800, opt-parser = false, enabled = true
+
+# 特定 App 的特定重写
+https://github.com/blackmatrix7/ios_rule_script/blob/master/script/zhihu/zhihu_plus.qxrewrite?raw=true, tag = 知乎系列, update-interval = 172800, opt-parser = false, enabled = true
+https://github.com/QuentinHsu/Apple-Rules-Script/blob/main/quantumult_x/rewrite/jd.conf?raw=true, tag = 京东系列, update-interval = 172800, opt-parser = false, enabled = true
+https://github.com/VirgilClyne/iRingo/blob/main/qxrewrite/Weather.qxrewrite?raw=true, tag=  iRingo for Apple Weather, update-interval = 172800, opt-parser = false, enabled = true
+https://github.com/VirgilClyne/iRingo/blob/main/qxrewrite/TestFlight.qxrewrite?raw=true, tag =  iRingo for TestFlight, update-interval = 172800, opt-parser = false, enabled = true
+## https://github.com/NobyDa/Script/blob/master/QuantumultX/TestFlightDownload.conf?raw=true, tag = TestFlight Unblock, update-interval = 172800, opt-parser = false, enabled = false
+https://github.com/ddgksf2013/Cuttlefish/raw/master/Rewrite/AdBlock/Bilibili.conf?raw=true, tag = Bilibili, update-interval = 172800, opt-parser = false, enabled = true
+https://github.com/app2smile/rules/blob/master/module/spotify.conf?raw=true, tag = Spotify Unblock, update-interval = 172800, opt-parser = false, enabled = true
+
+# 工具
+https://github.com/chavyleung/scripts/blob/master/box/rewrite/boxjs.rewrite.quanx.conf?raw=true, tag = BoxJS, update-interval = 172800, opt-parser = false, enabled = true
+https://github.com/QuentinHsu/Awesome-Apple/blob/main/Quantumult-X/Rewrite/sub-store.conf?raw=true, tag=Sub-Store, update-interval=172800, opt-parser=false, enabled=true
+
+
+[rewrite_local]
+# 本地重写
+
+
+[server_remote]
+# 服务器远程订阅
+# 远程服务器订阅模块，可直接订阅 SSR，SS 链接，以及 Quantumult X 格式的 vmess/trojan/https 订阅
+# 其它格式可用 opt-parser 参数开启解析器导入使用
+# img-url 参数用于指定图标，格式要求同样为 108*108 的 png 图片，可远程，可本地
+
+
+[server_local]
+# 本地服务器
+# 以下示范都是 ip(域名):端口，
+# 比如 vmess-a.203.167.55.4:777，实际是 203.167.55.4:777
+# 前面的 ss-a，ws-tls 这些，只是为了让你快速找到自己节点的类型
+# 实际使用时，请不要真的 傻乎乎的 写 vmess-a.203.167.55.4:777 这种。
+# 目前支持 shadowsocks/shadowsocksR/Vmess/Trojan/http(s)/Socks5 等类型
+# 支持 tls-cert-sha256 以及 tls-pubkey-sha256 参数等自定义 TLS 验证
+# shadowsocks 以及 shadowsocksR 类型，支持 V2-Plugin
+# 支持 UDP，支持 UDP-OVER-TCP（版本 1.0.29 665+）
+
+[task_local]
+# 本地任务
+event-interaction https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/streaming-ui-check.js?raw=true, tag = 流媒体-解锁查询, img-url = checkmark.seal.system, enabled = true
+event-interaction https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/geo_location.js?raw=true, tag = GeoIP 查询, img-url = location.fill.viewfinder.system
+event-interaction https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/nf-ui-check.js?raw=true, tag = Netflix 解锁检测, img-url = https://github.com/erdongchanyo/icon/blob/main/Policy-Filter/Netflix.png?raw=true, enabled = true
+event-interaction https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/ytb-ui-check.js?raw=true, tag = YouTube Premuim 检测, img-url = https://github.com/erdongchanyo/icon/blob/main/Policy-Filter/Youtube.png?raw=true, enabled = true
+event-interaction https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/disney-ui-check.js?raw=true, tag = Disney⁺ 查询, img-url = https://github.com/erdongchanyo/icon/blob/main/Policy-Filter/Disney+.png?raw=true, enabled = true
+5 0 * * * https://github.com/NobyDa/Script/blob/master/JD-DailyBonus/JD_DailyBonus.js?raw=true, tag = 京东多合一签到, img-url = https://github.com/ChuheGit/1/blob/main/QuantumultX/Gallery/API-Icon/JD_DailyBonus.png?raw=true, enabled = true
+2 9 * * * https://github.com/ChuheGit/1/blob/main/Script/jd_scripts/jd_bean_change.js?raw=true, tag = 京豆变动通知, img-url = https://github.com/ChuheGit/1/blob/main/QuantumultX/Gallery/API-Icon/jd_bean_change.png?raw=true, enabled = true
+5 0 * * * https://github.com/sub-store-org/Sub-Store/blob/master/scripts/revert.js?raw=true, tag = Sub-Store Clear, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lab.png, enabled = false
+
+
+[mitm]
+# mitm，中间人攻击。
+# - 开启 mitm，需要自行在 Quantumult X 中生成证书、安装、信任。不然无法开启 mitm，甚至是无法开启 Quantumult X
+passphrase =
+p12 =
+# 是否跳过验证证书
+skip_validating_cert = false
+# 是否强制嗅域名
+force_sni_domain_name = false
+hostname =
